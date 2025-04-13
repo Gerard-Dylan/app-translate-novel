@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig({
-  base: '/app-translate-novel/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' && process.env.VERCEL !== '1' ? '/app-translate-novel/' : '/',
   plugins: [react()],
-});
+}));
