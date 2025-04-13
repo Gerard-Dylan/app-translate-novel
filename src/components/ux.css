@@ -1,0 +1,97 @@
+
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.translate-button,
+.clear-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.translate-button:hover,
+.clear-button:hover {
+    background-color: #e60000;
+    color: white;
+}
+
+.translate-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.clear-button {
+    background-color: #15c4ec;
+    color: white;
+}
+
+.text-columns {
+    display: flex;
+    flex: 1;
+    gap: 60px;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+
+.text-column {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    background-color: #f1f1f1;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.input-textarea {
+    width: 100%;
+    min-height: 300px;
+    resize: none;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: height 0.2s ease;
+    box-sizing: border-box;
+}
+
+.translated-text {
+    width: 100%;
+    min-height: 300px;
+    resize: none;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: sans-serif;
+    border: 1px solid #6c6868;
+    border-radius: 5px;
+    background-color: #fafafa;
+    word-wrap: break-word;
+    overflow: hidden;
+    height: auto;
+    box-sizing: border-box; /
+    transition: height 0.2s ease;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
