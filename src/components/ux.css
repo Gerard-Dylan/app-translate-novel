@@ -1,5 +1,3 @@
-
-
 .buttons {
     display: flex;
     justify-content: center;
@@ -17,19 +15,32 @@
     transition: background-color 0.2s, color 0.2s;
 }
 
-.translate-button:hover,
-.clear-button:hover {
-    background-color: #e60000;
-    color: white;
-}
-
 .translate-button {
     background-color: #4caf50;
     color: white;
 }
 
+.translate-button:hover {
+    background-color: #e60000;
+    color: white;
+}
+
+.translate-button.loading {
+    background-color: #f39c12;
+    cursor: wait;
+}
+
+.translate-button:disabled {
+    background-color: #2e7a31;
+}
+
 .clear-button {
-    background-color: #15c4ec;
+    background-color: #0b8ba6;
+    color: white;
+}
+
+.clear-button:hover {
+    background-color: #e60000;
     color: white;
 }
 
@@ -40,7 +51,6 @@
     justify-content: space-between;
     align-items: stretch;
 }
-
 
 .text-column {
     flex: 1;
@@ -54,26 +64,16 @@
     font-size: 1.4rem;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #333;
-    background-color: #f1f1f1;
-    padding: 5px;
-    border-radius: 5px;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    border-radius: 8px;
     text-align: center;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
-.input-textarea {
-    width: 100%;
-    min-height: 300px;
-    resize: none;
-    padding: 10px;
-    font-size: 1rem;
-    font-family: sans-serif;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: height 0.2s ease;
-    box-sizing: border-box;
-}
 
+.input-textarea,
 .translated-text {
     width: 100%;
     min-height: 300px;
@@ -81,17 +81,71 @@
     padding: 10px;
     font-size: 1rem;
     font-family: sans-serif;
-    border: 1px solid #6c6868;
-    border-radius: 5px;
-    background-color: #fafafa;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: height 0.2s ease;
+    background-color: rgba(30, 30, 30, 0.6);
+    color: #f0f0f0;
+    border: 1px solid #444;
+    backdrop-filter: blur(4px);
+}
+
+.input-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.translated-text {
     word-wrap: break-word;
     overflow: hidden;
     height: auto;
-    box-sizing: border-box; /
-    transition: height 0.2s ease;
 }
+
 
 .error-message {
     color: red;
     margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .translate-container {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .text-columns {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+    }
+
+    .input-textarea,
+    .translated-text {
+        min-height: 200px;
+        font-size: 0.95rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .translate-button,
+    .clear-button {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .back-to-top {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
 }
