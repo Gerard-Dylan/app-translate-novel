@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.env
+
+clé api deepL : 2acc3354-1842-4cd9-b39b-54c7277636ce:fx
