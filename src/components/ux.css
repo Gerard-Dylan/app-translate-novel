@@ -1,8 +1,27 @@
-.buttons {
+.buttons-wrapper {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
+}
+
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex: 1;
+}
+
+.font-size-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: 10px;
 }
 
 .translate-button,
@@ -72,7 +91,6 @@
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 }
 
-
 .input-textarea,
 .translated-text {
     width: 100%;
@@ -100,12 +118,26 @@
     height: auto;
 }
 
+.text-size-button {
+    background-color: #282c34;
+    color: white;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.text-size-button:hover {
+    transform: scale(1.1);
+    background-color: #3c4048;
+}
 
 .error-message {
     color: red;
     margin-top: 10px;
 }
-
 
 @media (max-width: 768px) {
     .translate-container {
@@ -128,24 +160,27 @@
         font-size: 0.95rem;
     }
 
+    .buttons-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
     .buttons {
         flex-direction: column;
-        gap: 10px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .font-size-controls {
+        position: static;
+        justify-content: center;
+        width: 100%;
     }
 
     .translate-button,
     .clear-button {
-        width: 100%;
+        width: 90%;
         font-size: 1rem;
-    }
-
-    .back-to-top {
-        margin-left: auto;
-        margin-right: auto;
-        width: 80%;
-    }
-
-    h1 {
-        font-size: 1.6rem;
     }
 }

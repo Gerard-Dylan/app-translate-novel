@@ -44,12 +44,10 @@ button {
 .back-to-top {
   display: flex;
   align-items: center;
-  bottom: 30px;
   background-color: #4caf50;
   color: #000000;
   border: none;
-  margin-left: 45%;
-  margin-top: 2.5rem;
+  margin: 2.5rem auto 0 auto;
   border-radius: 50px;
   padding: 12px 15px;
   font-size: 1rem;
@@ -63,3 +61,4 @@ button {
   background-color: #45a049;
   transform: scale(1.05);
 }
+

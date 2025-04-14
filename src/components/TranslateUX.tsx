@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import React from "react";
 import "./ux.css";
 import Spinner from "./Spinner";
@@ -15,6 +15,7 @@ interface TranslateUXProps {
 const TranslateUX: React.FC<TranslateUXProps> = ({text, translatedText, loading, error, setText, handleTranslate,}: TranslateUXProps) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const translatedRef = useRef<HTMLTextAreaElement>(null);
+    const [fontSize, setFontSize] = useState(16);
 
     const syncHeights = () => {
         if (textareaRef.current && translatedRef.current) {
@@ -37,24 +38,41 @@ const TranslateUX: React.FC<TranslateUXProps> = ({text, translatedText, loading,
 
     return (
         <div className="translate-container">
-            <div className="buttons">
-                <button
-                    onClick={handleTranslate}
-                    disabled={loading || !text.trim()}
-                    className={`translate-button ${loading ? "loading" : ""}`}
-                >
-                    {loading ? (
-                        <>
-                            Traduction...
-                            <Spinner /> {}
-                        </>
-                    ) : (
-                        "Traduire"
-                    )}
-                </button>
-                <button onClick={() => setText("")} className="clear-button">
-                    Clear
-                </button>
+            <div className="buttons-wrapper">
+                <div className="buttons">
+                    <button
+                        onClick={handleTranslate}
+                        disabled={loading || !text.trim()}
+                        className={`translate-button ${loading ? "loading" : ""}`}
+                    >
+                        {loading ? (
+                            <>
+                                Traduction...
+                                <Spinner />
+                            </>
+                        ) : (
+                            "Traduire"
+                        )}
+                    </button>
+                    <button onClick={() => setText("")} className="clear-button">
+                        Clear
+                    </button>
+                </div>
+
+                <div className="font-size-controls">
+                    <button
+                        onClick={() => setFontSize((s) => Math.min(s + 2, 40))}
+                        className="text-size-button"
+                    >
+                        A+
+                    </button>
+                    <button
+                        onClick={() => setFontSize((s) => Math.max(s - 2, 10))}
+                        className="text-size-button"
+                    >
+                        a-
+                    </button>
+                </div>
             </div>
 
             <div className="text-columns">
@@ -68,6 +86,7 @@ const TranslateUX: React.FC<TranslateUXProps> = ({text, translatedText, loading,
                         className="input-textarea"
                     />
                 </div>
+
                 <div className="text-column">
                     <h4 className="section-title">Traduction :</h4>
                     <textarea
@@ -75,6 +94,7 @@ const TranslateUX: React.FC<TranslateUXProps> = ({text, translatedText, loading,
                         value={translatedText || "Aucune traduction disponible."}
                         readOnly
                         className="translated-text"
+                        style={{ fontSize: `${fontSize}px` }}
                     />
                 </div>
             </div>
