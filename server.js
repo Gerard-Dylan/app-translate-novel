@@ -6,7 +6,7 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 const DEEPL_API_KEY = process.env.DEEPL_API_KEY;
 
