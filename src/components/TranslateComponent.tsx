@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { translateText } from "../services/TranslationService";
+import { getDeepLUsage } from "../services/DeepLUsageService";
 import TranslateUX from "../components/TranslateUX";
 
 const TranslateComponent = () => {
@@ -7,6 +8,7 @@ const TranslateComponent = () => {
     const [translatedText, setTranslatedText] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [usage, setUsage] = useState<{ count: number, limit: number } | null>(null);
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -16,6 +18,17 @@ const TranslateComponent = () => {
             textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
         }
     }, [text]);
+
+
+    useEffect(() => {
+        const fetchUsage = async () => {
+            const data = await getDeepLUsage();
+            if (data && data.character) {
+                setUsage(data.character);
+            }
+        };
+        fetchUsage();
+    }, []);
 
     const handleTranslate = async () => {
         if (!text.trim()) {
@@ -43,6 +56,7 @@ const TranslateComponent = () => {
                 error={error}
                 setText={setText}
                 handleTranslate={handleTranslate}
+                usage={usage}
             />
         </div>
     );

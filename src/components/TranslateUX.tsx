@@ -10,9 +10,12 @@ interface TranslateUXProps {
     error: string;
     setText: Dispatch<SetStateAction<string>>;
     handleTranslate: () => void;
+    usage: { count: number; limit: number } | null;
 }
 
-const TranslateUX: React.FC<TranslateUXProps> = ({text, translatedText, loading, error, setText, handleTranslate,}: TranslateUXProps) => {
+
+
+const TranslateUX: React.FC<TranslateUXProps> = ({text, translatedText, loading, error, setText, handleTranslate, usage,}: TranslateUXProps) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const translatedRef = useRef<HTMLTextAreaElement>(null);
     const [fontSize, setFontSize] = useState(16);
@@ -38,6 +41,21 @@ const TranslateUX: React.FC<TranslateUXProps> = ({text, translatedText, loading,
 
     return (
         <div className="translate-container">
+
+            {}
+            {usage && (
+                <div
+                    style={{
+                        marginBottom: "0.5rem",
+                        textAlign: "center",
+                        color: "#fff",
+                        fontWeight: "bold",
+                    }}
+                >
+                    📊 {usage.count} / {usage.limit}
+                </div>
+            )}
+
             <div className="buttons-wrapper">
                 <div className="buttons">
                     <button
