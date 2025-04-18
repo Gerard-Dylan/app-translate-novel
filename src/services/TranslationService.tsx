@@ -18,4 +18,3 @@ export const translateText = async (text: string, targetLang: string) => {
         throw error;
     }
 };
-
