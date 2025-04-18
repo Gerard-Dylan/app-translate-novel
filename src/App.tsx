@@ -9,7 +9,6 @@ function App() {
             <button id="backToTop" className="back-to-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 🔝 Up ! Up ! Up !
             </button>
-
         </div>
     )
 }

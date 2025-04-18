@@ -19,7 +19,6 @@ const TranslateComponent = () => {
         }
     }, [text]);
 
-
     useEffect(() => {
         const fetchUsage = async () => {
             const data = await getDeepLUsage();
@@ -36,15 +35,28 @@ const TranslateComponent = () => {
             return;
         }
 
+        if (usage) {
+            const charsRemaining = usage.limit - usage.count;
+            if (text.length > charsRemaining) {
+                setError(`Limite DeepL atteinte : il reste ${charsRemaining} caractères et tu essaies d'en traduire ${text.length}.`);
+                return;
+            }
+        }
+
         setLoading(true);
         setError("");
-        const result = await translateText(text, "FR");
-        if (result) {
-            setTranslatedText(result);
-        } else {
+        try {
+            const result = await translateText(text, "FR");
+            if (result) {
+                setTranslatedText(result);
+            } else {
+                setError("Erreur lors de la traduction. Veuillez réessayer.");
+            }
+        } catch (err) {
             setError("Erreur lors de la traduction. Veuillez réessayer.");
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     return (
