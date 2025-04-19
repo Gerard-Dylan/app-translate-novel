@@ -12,19 +12,15 @@ const TranslateComponent: React.FC = () => {
     const handleTranslate = async () => {
         setError(null);
 
-
         try {
             setLoading(true);
             const result = await translateText(text, 'FR')
-            console.log("Texte envoyé à l'API :", text);
 
             setTranslatedText(result);
         } catch (err: unknown) {
             if (err instanceof Error) {
-                console.error("Erreur de traduction :", err);
                 setError(err.message);
             } else {
-                console.error("Erreur inconnue :", err);
                 setError("Une erreur inconnue est survenue.");
             }
         }
