@@ -8,9 +8,9 @@ const API_BASE_URL =
 export const translateText = async (text: string, targetLang: string) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/translate`, {
-            text,
-            targetLang,
-        });
+            text, targetLang,},
+        { headers: { 'Content-Type': 'application/json' } }
+        );
 
         return response.data.translations[0].text;
     } catch (error) {
