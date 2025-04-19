@@ -42,20 +42,7 @@ app.post('/translate', async (req, res) => {
     }
 });
 
-app.get('/deepl-usage', async (req, res) => {
-    try {
-        const response = await axios.get('https://api-free.deepl.com/v2/usage', {
-            headers: {
-                'Authorization': `DeepL-Auth-Key ${DEEPL_API_KEY}`
-            }
-        });
 
-        res.json(response.data);
-    } catch (error) {
-        console.error('Erreur récupération usage DeepL :', error.response?.data || error.message);
-        res.status(500).json({ error: 'Erreur lors de la récupération de l’usage DeepL' });
-    }
-});
 
 app.listen(port, () => {
     console.log(`Serveur proxy démarré sur http://localhost:${port}`);
