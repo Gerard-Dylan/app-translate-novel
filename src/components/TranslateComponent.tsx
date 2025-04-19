@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import TranslateUX from "./components/TranslateUX";
-import { translateText } from "./services/DeepLService";
+import React, { useState } from "react";
+import TranslateUX from "./TranslateUX.tsx";
+import { translateText } from "../services/TranslationService.tsx";
 
 
 const TranslateComponent: React.FC = () => {
@@ -17,8 +17,8 @@ const TranslateComponent: React.FC = () => {
             setLoading(true);
             const result = await translateText(text, 'FR')
             setTranslatedText(result);
-        } catch (err) {
-            setError("Erreur lors de la traduction.");
+        } catch {
+            setError("Une erreur est survenue.");
         } finally {
             setLoading(false);
         }
