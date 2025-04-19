@@ -24,6 +24,9 @@ app.use(cors({
 app.use(express.json());
 
 app.post('/translate', async (req, res) => {
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+
     const { text, targetLang } = req.body;
 
     try {
